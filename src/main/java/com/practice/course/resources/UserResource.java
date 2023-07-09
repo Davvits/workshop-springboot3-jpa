@@ -15,7 +15,7 @@ import com.practice.course.services.UserService;
 
 
 @RestController
-@RequestMapping(value = "users")
+@RequestMapping(value = "/users")
 public class UserResource {
 	
 	@Autowired
