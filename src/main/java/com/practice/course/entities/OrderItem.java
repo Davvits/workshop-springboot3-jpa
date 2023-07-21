@@ -2,6 +2,9 @@ package com.practice.course.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import com.practice.course.entities.pk.OrderItemPK;
 
 import jakarta.persistence.EmbeddedId;
@@ -13,7 +16,8 @@ public class OrderItem implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@EmbeddedId
-	private OrderItemPK id;
+	@JsonProperty(access = Access.WRITE_ONLY)
+	private OrderItemPK id = new OrderItemPK();;
 	
 	private Integer quantity;
 	private Double price;
@@ -27,6 +31,7 @@ public class OrderItem implements Serializable {
 		this.quantity = quantity;
 		this.price = price;
 	}
+	@JsonIgnore
     public Order getOrder() {
     	return id.getOrder();
     }
